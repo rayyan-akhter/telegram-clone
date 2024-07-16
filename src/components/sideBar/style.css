@@ -71,12 +71,12 @@ footer {
     top: 0;
     width: 60vw;
     height: 100vh;
-    transform:translate(-40vw) ;
+    transform:translate(-60vw) ;
     background-color: rgb(28,36,48);
 
   }
   .sidebar.visible {
-    width: 40vw;
+    width: 60vw;
     height: 100vh;
     transform: translateX(0);
   }
