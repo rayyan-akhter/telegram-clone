@@ -1,0 +1,166 @@
+.messages-container {
+  background: url(https://web.telegram.org/a/chat-bg-pattern-dark.ad38368a9e8140d0ac7d.png)
+    rgba(0, 0, 0, 0.95);
+  width: calc(100vw - 387px);
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  background-size: contain;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatMessages-header {
+  display: flex;
+  height: 56px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-left: 10px;
+
+  background-color: rgb(33, 33, 33);
+}
+.chat-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 10px;
+}
+.chat-header-info-row {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.chatList-top-icon-container {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+.chatList-top-icon-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.chatList-bottom-icon-container {
+  display: flex;
+  gap: 15px;
+}
+.message-list-container {
+  border: black solid 1px;
+  padding-left: 20%;
+  padding-right: 20%;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.messegeList {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  list-style-type: none;
+  gap: 8px;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.message {
+  justify-content: flex-start;
+  display: flex;
+  max-width: 80%;
+
+  padding: 0.3125rem 0.5rem 0.375rem;
+}
+
+.senderChats {
+  justify-content: left;
+  align-items: center;
+  background-color: #2c2c2c;
+  margin-right: auto;
+  border-radius: 15px;
+  border-bottom-left-radius: 0;
+  height: 32px;
+}
+.myChat {
+  justify-content: flex-end;
+  align-items: center;
+  background-color: rgb(118, 106, 200);
+  margin-left: auto;
+  border-radius: 15px;
+  border-bottom-right-radius: 0;
+}
+.message p {
+  margin: 0;
+  word-wrap: break-word;
+}
+.message-footer {
+  width: 100%;
+  display: flex;
+  height: 76px;
+  gap: 10px;
+  padding-bottom: 20px;
+}
+.message-input-container {
+  flex-grow: 1;
+  z-index: 1;
+  box-shadow: 0 1px 2px rgb(16, 16, 16, 0.612);
+  background-color: rgb(33, 33, 33);
+  border-radius: 0.9375rem;
+  border-bottom-right-radius: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: rgba(170, 170, 170);
+  gap: 15px;
+}
+.message-input-container input {
+  background-color: transparent;
+  width: 82%;
+  height: 40px;
+  border: none;
+  color: rgba(170, 170, 170);
+  font-size: 16px;
+}
+.message-input-container input:focus {
+  border: none;
+}
+.message-voice-input {
+  background-color: rgb(33, 33, 33);
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.backBtn {
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 892px) {
+  .messages-container {
+    width: 100vw;
+  }
+
+  .message-list-container {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .backBtn {
+    display: block;
+
+    cursor: pointer !important;
+  }
+}

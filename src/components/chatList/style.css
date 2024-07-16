@@ -1,0 +1,206 @@
+.chatList-container {
+    background-color: #212121;
+    width: 387px;
+    overflow-y:auto;
+    overflow-x: hidden;
+    border-right:solid 2px #2c2c2c ;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  .chatList-header {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-top: 5px;
+    gap: 20px;
+    padding-right: 10px;
+    z-index: 2;
+    height: 56px;
+    line-height: 56px;
+    position: sticky;
+    top: 0;
+  }
+  .title{
+    display: none;
+  }
+  .search-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    position: relative;
+    border: solid 2px black;
+    border-radius: 1.375rem;
+    width: 100%;
+    max-width: calc(100% - 3.25rem);
+    height: 2.8rem;
+    border: 2px solid #212121;
+    background-color: #2c2c2c;
+    padding-left: 15px;
+  }
+  .search-icon {
+    color: #545454;
+  }
+  .search-input {
+    background-color: rgba(0, 0, 0, 0) !important;
+    border: none !important;
+    height: 2.5rem;
+    font-size: 100%;
+    border-radius: 1.375rem;
+    text-align: initial;
+    padding-left: 10px;
+  }
+  .search-input::placeholder {
+    color: rgba(170, 170, 170);
+  }
+  .chatLists {
+    padding: 8px;
+    display: flex;
+    flex: 1;
+    gap: 8px;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  .chat {
+    display: flex;
+    height: 82px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+  }
+  .chatList-icon-container {
+    width: 60px;
+    height: 60px;
+  }
+  .chatList-icon-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  .info {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: center;
+    gap: 5px;
+  }
+  .info-row {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+  .info-title h4 {
+    font-weight: 500;
+  }
+  .separator {
+    flex-grow: 1;
+    min-width: 0.5rem;
+  }
+  .last-msg-time {
+    margin-right: 0.1875rem;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    color: #686c72;
+  }
+  .info-subtitles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .last-message {
+    text-align: left;
+    padding-right: 0.25rem;
+    flex-grow: 1;
+    color: rgb(170, 170, 170);
+    unicode-bidi: plaintext;
+  }
+  .hamburger-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+  }
+  .hamburger-wrapper:hover{
+    background-color: #2c2c2c;
+  }
+  
+  .hamburger-active {
+    background-color:#2c2c2c 
+  }
+  .tabs{
+    display: none;
+  }
+  .unread-no-msgs{
+    background-color: rgb(118, 106, 200);
+    color: white;
+    padding: 3px;
+    line-height: 1rem;
+    border-radius: 25px;
+  }
+  
+  @media screen and (max-width:892px) {
+    .chatList-container{
+      width: 100vw;
+    }
+    .title{
+      display: flex;
+      align-items: center;
+      color: white;
+      justify-content: center;
+    }
+    .chatList-header{
+      width: 100%;
+      background-color: rgba(29, 41, 62, 0.85);
+      backdrop-filter: blur(10px);
+
+    }
+    .chatLists{
+      width: 100%;
+      background-color: rgb(17, 27, 37);
+    }
+    .search-container {
+      visibility: hidden; 
+      pointer-events: none; 
+      flex-direction: row-reverse;
+      padding-right: 20px;
+    }
+  
+    .search-icon {
+      visibility: visible; 
+      color: white;
+    }
+    .search-input{
+      display: none;
+    }
+    .tabs{
+      display: flex;
+      justify-content: flex-start;
+      color: white;
+      background-color: rgb(37,45,57);
+      overflow-x: auto;
+      gap: 20px;
+    }
+    .tabLabel{
+     
+      color: white;
+    }
+    
+
+  }
