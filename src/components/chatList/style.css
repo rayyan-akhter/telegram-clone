@@ -184,6 +184,9 @@
     color: rgb(107,192,253);
     transition: width 0.3s ease-in-out;
   }
+
+  
+
   @media screen and (max-width:892px) {
     .chatList-container{
       width: 100vw;

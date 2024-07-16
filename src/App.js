@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import ChatList from "./components/chatList/Chatlist";
 import ChatMessages from "./components/chatMessages/Chatmessages";
@@ -13,9 +13,7 @@ const App = () => {
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const loaderRef = useRef(null);
+ 
   
 
   useEffect(() => {
@@ -94,13 +92,11 @@ const App = () => {
  
   const onClickChat = (chat) => {
     setSelectedChat(chat);
-    console.log(selectedChat);
-    console.log(messages);
+   
   };
 
   const handleBack = () => {
     setSelectedChat(null);
-    console.log("clicked");
   };
 
   const toggleDarkMode = () => {

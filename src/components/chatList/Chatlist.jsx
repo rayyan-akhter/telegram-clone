@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import { format } from "date-fns";
+import React, { useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import chatIcon from "../../assets/chatIcon.jpg";
-import "./style.css";
 import SideBar from "../sideBar/Sidebar";
-import { format } from "date-fns";
+import "./style.css";
 
 
 const ChatList = ({
@@ -127,6 +127,7 @@ const ChatList = ({
           toggleDarkMode={toggleDarkMode}
         />
       </div>
+      
     </div>
   );
 };
