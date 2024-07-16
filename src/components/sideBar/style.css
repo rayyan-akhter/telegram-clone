@@ -1,5 +1,5 @@
 .sidebar {
-  position: absolute;
+  position: fixed;
   top: 55px;
   left: 17px;
   width: 272px;
@@ -13,7 +13,6 @@
   transform-origin: top left;
   box-shadow: 0 0.25rem 0.5rem 0.125rem rgb(16, 16, 16, 0.612);
   color: white;
-
   display: flex;
   flex-direction: column;
   opacity: 0;
@@ -24,6 +23,7 @@
   transform: scale(1);
   opacity: 1;
   height: 385px;
+  overflow-y: hidden;
 
   color: white;
 }
@@ -73,12 +73,17 @@ footer {
     height: 100vh;
     transform:translate(-60vw) ;
     background-color: rgb(28,36,48);
+   
 
   }
   .sidebar.visible {
     width: 60vw;
     height: 100vh;
     transform: translateX(0);
+    overflow-y: hidden; 
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
   }
   .sideBar-header{
     height: 200px;
