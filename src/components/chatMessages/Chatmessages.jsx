@@ -8,8 +8,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import CallIcon from "@mui/icons-material/Call";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { format } from "date-fns";
 
-const ChatMessages = ({ messages, chat, onBack }) => {
+const ChatMessages = ({ messages, chat, onBack ,isDarkMode }) => {
   
   if (!messages) {
     return <p className="messages-container">Loading messages...</p>;
@@ -24,8 +25,13 @@ const ChatMessages = ({ messages, chat, onBack }) => {
     return isSenderMessage ? "senderChats" : "myChat";
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return format(date, "p");
+  };
+
   return (
-    <section className="messages-container">
+    <section className={`messages-container ${isDarkMode ? 'dark-mode' : ''}`}>
       <div className="chatMessages-header">
         
       {window.innerWidth <= 892 && (
@@ -44,7 +50,7 @@ const ChatMessages = ({ messages, chat, onBack }) => {
                   <h4>{chat.creator.name}</h4>
                 </div>
                 <div className="separator"></div>
-                <div className="last-msg-time">{chat.status}</div>
+                <div className="last-msg-time">No data here</div>
               </div>
             </div>
             <div className="chatList-bottom-icon-container">
@@ -63,6 +69,9 @@ const ChatMessages = ({ messages, chat, onBack }) => {
               className={`message ${renderMessageClass(message)}`}
             >
               <p className="message-text">{message.message}</p>
+              <div className={`last-msg-time ${renderMessageClass(message)}-time`}>
+                <p>{formatDate(message.updated_at)}</p>
+              </div>
             </div>
           ))}
         </div>

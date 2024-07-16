@@ -1,32 +1,48 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import ChatList from "./components/chatList/Chatlist";
 import ChatMessages from "./components/chatMessages/Chatmessages";
 
+import { ClipLoader } from "react-spinners";
+
 const App = () => {
-  // const [theme, setTheme] = useState('light');
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [chats, setChats] = useState([]);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const loaderRef = useRef(null);
+  
 
   useEffect(() => {
     const fetchChats = async () => {
+      setLoading(true);
       try {
-        const response = await fetch(
-          "https://devapi.beyondchats.com/api/get_all_chats?page=1"
-        );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+        // Fetch all pages of chats
+        const allChats = [];
+        let page = 1;
+        let hasMore = true;
+        while (hasMore) {
+          const response = await fetch(
+            `https://devapi.beyondchats.com/api/get_all_chats?page=${page}`
+          );
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          if (data.status === "success" && Array.isArray(data.data.data)) {
+            allChats.push(...data.data.data);
+            page++;
+            hasMore = data.data.data.length > 0;
+          } else {
+            throw new Error("Chats data format is invalid");
+          }
         }
-        const data = await response.json();
-        if (data.status === "success" && Array.isArray(data.data.data)) {
-          setChats(data.data.data);
-        } else {
-          throw new Error("Chats data format is invalid");
-        }
+        setChats(allChats);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching chats:", error);
@@ -64,7 +80,6 @@ const App = () => {
     }
   }, [selectedChat]);
 
-
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -76,6 +91,7 @@ const App = () => {
     };
   }, []);
 
+ 
   const onClickChat = (chat) => {
     setSelectedChat(chat);
     console.log(selectedChat);
@@ -84,15 +100,22 @@ const App = () => {
 
   const handleBack = () => {
     setSelectedChat(null);
-    console.log("clicked")
+    console.log("clicked");
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="loader">
+        <ClipLoader size={200} />;
+      </div>
+    );
   }
 
   if (error) {
-    return <p>Error fetching chats: {error.message}</p>;
+    return <p className="loader">Error fetching chats: {error.message}</p>;
   }
 
   return (
@@ -102,6 +125,7 @@ const App = () => {
           messages={messages}
           chat={selectedChat}
           onBack={handleBack}
+          isDarkMode={isDarkMode}
         />
       ) : (
         <>
@@ -109,10 +133,19 @@ const App = () => {
             chats={chats}
             onClickChat={onClickChat}
             selectedChat={selectedChat}
+            chat={selectedChat}
+            isDarkMode={isDarkMode}
+            toggleDarkMode={toggleDarkMode}
           />
           {windowWidth > 892 && (
-            <ChatMessages messages={messages} chat={selectedChat}  onBack={handleBack} />
+            <ChatMessages
+              messages={messages}
+              chat={selectedChat}
+              onBack={handleBack}
+              isDarkMode={isDarkMode}
+            />
           )}
+        
         </>
       )}
     </div>
