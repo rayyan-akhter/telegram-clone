@@ -7,8 +7,8 @@
   border: none;
   background: rgb(34, 34, 34, 0.867);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 21;
-  backdrop-filter: blur(5px);
+  z-index: 2;
+  backdrop-filter: blur(4px);
   transform: translateX(-100%);
   transform-origin: top left;
   box-shadow: 0 0.25rem 0.5rem 0.125rem rgb(16, 16, 16, 0.612);

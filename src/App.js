@@ -6,13 +6,15 @@ import ChatMessages from "./components/chatMessages/Chatmessages";
 import { ClipLoader } from "react-spinners";
 
 const App = () => {
-  const [isDarkMode, setIsDarkMode] = useState(true);
   const [chats, setChats] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedChat, setSelectedChat] = useState(null);
   const [messages, setMessages] = useState([]);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isDarkMode, setIsDarkMode] = useState(
+    localStorage.getItem('theme') === 'dark' || localStorage.getItem('theme') === null
+  );
  
   
 
@@ -20,7 +22,6 @@ const App = () => {
     const fetchChats = async () => {
       setLoading(true);
       try {
-        // Fetch all pages of chats
         const allChats = [];
         let page = 1;
         let hasMore = true;
@@ -90,6 +91,13 @@ const App = () => {
   }, []);
 
  
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
+
+
   const onClickChat = (chat) => {
     setSelectedChat(chat);
    
@@ -98,9 +106,8 @@ const App = () => {
   const handleBack = () => {
     setSelectedChat(null);
   };
-
   const toggleDarkMode = () => {
-    setIsDarkMode((prevMode) => !prevMode);
+    setIsDarkMode(prevMode => !prevMode);
   };
   if (loading) {
     return (
@@ -130,8 +137,7 @@ const App = () => {
             onClickChat={onClickChat}
             selectedChat={selectedChat}
             chat={selectedChat}
-            isDarkMode={isDarkMode}
-            toggleDarkMode={toggleDarkMode}
+            toggleDarkMode={toggleDarkMode} isDarkMode={isDarkMode}
           />
           {windowWidth > 892 && (
             <ChatMessages

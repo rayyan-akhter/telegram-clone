@@ -252,9 +252,7 @@
 
     .tabs.active {
       color: rgb(107,192,253);
-    
-      /* text-decoration: underline; */
-    }
+        }
    
    .tabs.active .underLine {
     width: 70%;
